@@ -1,6 +1,6 @@
 console.log('hello world!');
 
-const shoot = 'Rock'
+const shoot = prompt ("Rock, Paper, or Scissors?");
 
 function computerPlay () {
     let options = ["Rock", "Paper", "Scissors"];
@@ -67,3 +67,4 @@ function game () {
 }
 
 console.log(game());
+
