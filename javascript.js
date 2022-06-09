@@ -1,6 +1,10 @@
-console.log('hello world!');
+//console.log('hello world!');
 
-const shoot = prompt ("Rock, Paper, or Scissors?");
+//const shoot = prompt ("Rock, Paper, or Scissors?");
+
+let winCount = 0;
+let loseCount = 0;
+let tieCount = 0;
 
 function computerPlay () {
     let options = ["Rock", "Paper", "Scissors"];
@@ -42,29 +46,125 @@ function playRound (playerSelection, computerSelection) {
     else {return "You didn't put in 'Rock', 'Paper', or 'Scissors', did you? You idiot!"}
 }
 
-function game () {
- let winCount = 0;
- let loseCount = 0;
-    for (var i = 0; i < 5; i++) {
-        let round = playRound(shoot, computerPlay());
-        console.log(round);
-        if (round.includes("Win")) {
-            winCount++;
-        } 
-        else if (round.includes("Lose")) {
-            loseCount++;
-        }
-    }
- if (winCount > loseCount) {
-     return "You Won the game!";
- } 
- else if (winCount < loseCount) {
-     return "You Lost the game! Loser!";
- } 
- else {
- return "You Tied!";
- }
+const resultLog = document.querySelector('.resultLog');
+
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    let winOrLose = document.createElement('span');
+    winOrLose.textContent = playRound('rock', computerPlay());
+    resultLog.appendChild(winOrLose);
+    if (winOrLose.textContent.includes("Win")) {
+        winCount++; 
+    } else if (winOrLose.textContent.includes("Lose")) {
+       loseCount++; } else { 
+           tieCount++;
+       };
+    gameResult(resultLog.children.length, winCount, loseCount);
+    console.log(resultLog.children.length, winCount, loseCount, tieCount);
+    updateCount();
+});
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    let winOrLose = document.createElement('span');
+    winOrLose.textContent = playRound('paper', computerPlay());
+    resultLog.appendChild(winOrLose);
+    if (winOrLose.textContent.includes("Win")) {
+        winCount++; 
+    } else if (winOrLose.textContent.includes("Lose")) {
+       loseCount++; } else { 
+           tieCount++;
+       };
+       gameResult(resultLog.children.length, winCount, loseCount);
+       console.log(resultLog.children.length, winCount, loseCount, tieCount);
+       updateCount();
+});
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    let winOrLose = document.createElement('span');
+    winOrLose.textContent = playRound('scissors', computerPlay());
+    resultLog.appendChild(winOrLose);
+    if (winOrLose.textContent.includes("Win")) {
+        winCount++; 
+    } else if (winOrLose.textContent.includes("Lose")) {
+       loseCount++; } else { 
+           tieCount++;
+       };
+    gameResult(resultLog.children.length, winCount, loseCount);
+    console.log(resultLog.children.length, winCount, loseCount, tieCount);
+    updateCount();
+});
+
+
+function gameResult (games, wins, losses) {
+    if (games === 5 && wins > losses) {
+        let message = document.createElement('span');
+        message.textContent = 'You Won!!';
+        resultLog.appendChild(message);
+        console.log('You Won!!');
+    } else if (games === 5 && wins < losses) {
+        let message = document.createElement('span');
+        message.textContent = 'You Lost! What a Loser!';
+        resultLog.appendChild(message);
+        console.log('You Lost! What a Loser!');
+    } else if (games === 5) {
+        let message = document.createElement('span');
+        message.textContent = 'You Tied!!';
+        resultLog.appendChild(message);
+        console.log('You Tied!!');
+    };
 }
 
-console.log(game());
+
+//counter display
+function updateCount () {
+    let winCountSpan = document.querySelector('#winCount');
+    winCountSpan.textContent = winCount;
+
+    let loseCountSpan = document.querySelector('#loseCount');
+    loseCountSpan.textContent = loseCount;
+
+    let tieCountSpan = document.querySelector('#tieCount');
+    tieCountSpan.textContent = tieCount;
+}
+
+
+
+// This is the segment I'm trying to figure out if have it return the you won the game, etc.
+// if (resultLog.children.length = 5 && winCount > loseCount) {
+//     resultLog.appendChild('You Won!!');
+// } else if (resultLog.children.length = 5 && winCount < loseCount) {
+//     resultLog.appendChild('You Lost! What a Loser!');
+// } else if (resultLog.children.length = 5) {
+//     resultLog.appendChild('You Tied!!');
+// };
+
+
+
+// function game () {
+//  let winCount = 0;
+//  let loseCount = 0;
+//     for (var i = 0; i < 5; i++) {
+//         let round = playRound(shoot, computerPlay());
+//         console.log(round);
+//         if (round.includes("Win")) {
+//             winCount++;
+//         } 
+//         else if (round.includes("Lose")) {
+//             loseCount++;
+//         }
+//     }
+//  if (winCount > loseCount) {
+//      return "You Won the game!";
+//  } 
+//  else if (winCount < loseCount) {
+//      return "You Lost the game! Loser!";
+//  } 
+//  else {
+//  return "You Tied!";
+//  }
+// }
+
+//console.log(game());
 

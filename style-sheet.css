@@ -1,0 +1,23 @@
+.button-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 40px 0px;
+
+}
+
+.score-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 40px 0px;
+
+}
+
+.resultLog {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 40px 0px;
+    flex-direction: column;
+}
